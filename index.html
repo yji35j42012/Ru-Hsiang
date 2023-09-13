@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="./style/css/all.css">
+</head>
+
+<body>
+	<div id="app" class="wrap">
+		<tophead></tophead>
+		<div class="main">
+			<router-view></router-view>
+		</div>
+
+		<!-- <loading v-if="loadingShow"></loading> -->
+	</div>
+
+	<script src="./js/libs/axios.js"></script>
+	<script src="./js/libs/vue_2_6_9.js"></script>
+	<script src="./js/libs/vue-router.js"></script>
+	<script src="./js/libs/vuex_3_0_1.js"></script>
+	<script src="./js/libs/http-vue-loader.js"></script>
+	<script src="./store/store.js"></script>
+
+	<script>
+		const routes = [
+			{
+				path: "/",
+				component: httpVueLoader("./page/home.vue"),
+			},
+			{
+				path: "/question",
+				component: httpVueLoader("./page/question.vue"),
+			},
+			{
+				path: "/plan",
+				component: httpVueLoader("./page/plan.vue"),
+			},
+			{
+				path: "/login",
+				component: httpVueLoader("./page/login.vue"),
+			},
+			{
+				path: "/logout",
+				component: httpVueLoader("./page/logout.vue"),
+			},
+		]
+		const router = new VueRouter({
+			// mode: 'history',
+			routes: routes, // (缩写) 相当于 routes: routes
+		});
+		var vue = new Vue({
+			el: "#app",
+			data() {
+				return {
+					loadingShow: true
+					// nowPage: "",
+					// oldpetData: pet,
+					// icon_all: icon_all
+				};
+			},
+			mounted() {
+				let getUser = sessionStorage.getItem("username");
+				let getDepartment = sessionStorage.getItem("department");
+			},
+			components: {
+				tophead: httpVueLoader("./components/Header.vue"),
+				loading: httpVueLoader("./components/Loading.vue"),
+			},
+			router,
+			mounted() {
+				let getUser = JSON.parse(sessionStorage.getItem("wuhsiang"));
+				if (!getUser) {
+					this.$router.push("/login");
+					return
+				}
+
+				if (getUser.acc !== '' && getUser.pass !== "") {
+					this.$router.push("/");
+				} else {
+					this.$router.push("/login");
+				}
+
+
+			},
+			computed: {},
+			watch: {
+				$route(to, from) {
+					// var now = this.$route.path;
+					// if ((now.split('home')[0] == 'home' || now.split('home')[0] == '/') && now.split('home')[1] !== '') {
+					// 	this.nowPage = "detail";
+					// 	store.dispatch("PAGE", "detail");
+					// } else if (now == "/" || now == 'home') {
+					// 	this.nowPage = "home";
+					// 	store.dispatch("PAGE", "home");
+					// } else {
+					// 	store.dispatch("SET_LOADING", true);
+					// 	this.nowPage = now.split("/")[1];
+					// 	store.dispatch("PAGE", now.split("/")[1]);
+					// }
+				},
+			},
+			methods: {},
+		});
+	</script>
+</body>
+
+</html>

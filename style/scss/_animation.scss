@@ -1,0 +1,11 @@
+@keyframes cardAni {
+	0% {
+		transform: rotateY(35deg);
+	}
+	50% {
+		transform: rotateY(-10deg);
+	}
+	100% {
+		transform: rotateY(0deg);
+	}
+}
