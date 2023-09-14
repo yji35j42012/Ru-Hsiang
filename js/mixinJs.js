@@ -21,6 +21,8 @@ var load = {
 	}
 };
 
+var url =
+	"https://script.google.com/macros/s/AKfycbxTcJXs8101AOaUMRzWmANAe6sWHY-hu8691n4s9Rz7ZT6homm6ZkCiAaSnBqU9tZRc/exec";
 // var msg = {
 //     methods:{
 //         msgHandler(str){

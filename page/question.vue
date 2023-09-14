@@ -37,7 +37,27 @@ module.exports = {
 		return {};
 	},
 	components: {},
-	mounted() {},
+	mounted() {
+		var get_url = url + "?getData=qa";
+
+		axios.get(get_url).then(res => {
+			console.log(res.data);
+
+			// if (res.data[0].state !== 0) {
+			// 	store.dispatch("SET_LOADING", false);
+			// 	store.dispatch("MSG", "帳號或密碼輸入錯誤");
+			// 	return;
+			// } else {
+			// 	let memObj = JSON.stringify({
+			// 		user: this.user
+			// 	});
+			// 	sessionStorage.setItem("wuhsiang", memObj);
+			// 	store.dispatch("USER", { user: this.user });
+
+			// 	this.$router.push("/");
+			// }
+		});
+	},
 	computed: {},
 	methods: {}
 };

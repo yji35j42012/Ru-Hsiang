@@ -47,11 +47,10 @@ module.exports = {
 				return;
 			}
 			store.dispatch("SET_LOADING", true);
-			var url =
-				"https://script.google.com/macros/s/AKfycbzfCpUezp1dOVllAmVimOD8zTUbAiVSAQ2ORZcpwCw0u5VNNpAH1r9ap2mAqbt-tlvu/exec";
+			
 			var get_url =
 				url +
-				"?user=" +
+				"?getData=login&user=" +
 				encodeURIComponent(this.user) +
 				"&pass=" +
 				encodeURIComponent(this.pass);
