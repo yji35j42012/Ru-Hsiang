@@ -28,8 +28,8 @@
 module.exports = {
 	data() {
 		return {
-			user: "alex",
-			pass: "a1234"
+			user: "",
+			pass: ""
 		};
 	},
 	components: {},
