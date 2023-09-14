@@ -53,26 +53,9 @@
 			// mode: 'history',
 			routes: routes, // (缩写) 相当于 routes: routes
 		});
-		var vue = new Vue({
-			el: "#app",
-			data() {
-				return {
-					loadingShow: true
-					// nowPage: "",
-					// oldpetData: pet,
-					// icon_all: icon_all
-				};
-			},
-			mounted() {
-				let getUser = sessionStorage.getItem("username");
-				let getDepartment = sessionStorage.getItem("department");
-			},
-			components: {
-				tophead: httpVueLoader("./components/Header.vue"),
-				loading: httpVueLoader("./components/Loading.vue"),
-			},
-			router,
-			mounted() {
+
+		var loginCheck = {
+			created: function () {
 				let getUser = JSON.parse(sessionStorage.getItem("wuhsiang"));
 				if (!getUser) {
 					this.$router.push("/login");
@@ -84,9 +67,26 @@
 				} else {
 					this.$router.push("/login");
 				}
+			}
+		}
 
-
+		var vue = new Vue({
+			el: "#app",
+			data() {
+				return {
+					loadingShow: true
+					// nowPage: "",
+					// oldpetData: pet,
+					// icon_all: icon_all
+				};
 			},
+			mixins: [loginCheck],
+			mounted() { },
+			components: {
+				tophead: httpVueLoader("./components/Header.vue"),
+				loading: httpVueLoader("./components/Loading.vue"),
+			},
+			router,
 			computed: {},
 			watch: {
 				$route(to, from) {

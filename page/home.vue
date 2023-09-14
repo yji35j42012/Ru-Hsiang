@@ -7,3 +7,17 @@
 		</div>
 	</div>
 </template>
+
+
+	<script>
+module.exports = {
+	data() {
+		return {};
+	},
+	mixins: [loginCheck],
+	components: {},
+	mounted() {},
+	computed: {},
+	methods: {}
+};
+</script>
