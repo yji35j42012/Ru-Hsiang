@@ -15,8 +15,8 @@
 		<div class="main">
 			<router-view></router-view>
 		</div>
-
-		<!-- <loading v-if="loadingShow"></loading> -->
+		<msg v-if="msg !==''" :msg="msg"></msg>
+		<loading v-if="loadingShow"></loading>
 	</div>
 
 	<script src="./js/libs/axios.js"></script>
@@ -24,6 +24,7 @@
 	<script src="./js/libs/vue-router.js"></script>
 	<script src="./js/libs/vuex_3_0_1.js"></script>
 	<script src="./js/libs/http-vue-loader.js"></script>
+	<script src="./js/mixinJs.js"></script>
 	<script src="./store/store.js"></script>
 
 	<script>
@@ -54,40 +55,33 @@
 			routes: routes, // (缩写) 相当于 routes: routes
 		});
 
-		var loginCheck = {
-			created: function () {
-				let getUser = JSON.parse(sessionStorage.getItem("wuhsiang"));
-				if (!getUser) {
-					this.$router.push("/login");
-					return
-				}
-
-				if (getUser.acc !== '' && getUser.pass !== "") {
-					this.$router.push("/");
-				} else {
-					this.$router.push("/login");
-				}
-			}
-		}
 
 		var vue = new Vue({
 			el: "#app",
 			data() {
 				return {
-					loadingShow: true
+					// loadingShow: true
 					// nowPage: "",
 					// oldpetData: pet,
 					// icon_all: icon_all
 				};
 			},
-			mixins: [loginCheck],
-			mounted() { },
+			mixins: [loginCheck, load],
+			mounted() {},
 			components: {
 				tophead: httpVueLoader("./components/Header.vue"),
 				loading: httpVueLoader("./components/Loading.vue"),
+				msg: httpVueLoader("./components/Message.vue"),
 			},
 			router,
-			computed: {},
+			computed: {
+				loadingShow() {
+					return store.state.loadingShow
+				},
+				msg() {
+					return store.state.msg;
+				},
+			},
 			watch: {
 				$route(to, from) {
 					// var now = this.$route.path;
