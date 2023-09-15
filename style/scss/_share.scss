@@ -251,6 +251,7 @@
 	}
 	// .qa_item
 	&_item {
+		position: relative;
 		padding: 30px;
 		background-color: #fff;
 		border-radius: 15px;
@@ -342,5 +343,77 @@
 	@extend %transition;
 	@include hoverHandler {
 		background-color: rgb(43, 120, 193);
+	}
+}
+
+.ans {
+	@include d_f(flex);
+	flex-direction: column;
+	padding: 20px 15px;
+	// .ans_title
+	&_title {
+		flex: none;
+		margin-bottom: 3px;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	// .ans_date
+	&_date {
+		flex: none;
+		margin-bottom: 5px;
+		font-size: 13px;
+		color: #a1a4b9;
+	}
+	// .ans_content
+	&_content {
+		flex: none;
+	}
+	// .ans_box
+	&_box {
+		overflow-x: hidden;
+		overflow-y: auto;
+		height: 100%;
+		flex: 100%;
+	}
+	// .ans_group
+	&_group {
+		margin-top: 20px;
+		// .ans_group_item
+		&_item {
+			padding: 10px;
+			background-color: #fff;
+			border-radius: 5px;
+			& + & {
+				margin-top: 10px;
+			}
+		}
+		// .ans_group_title
+		&_title {
+			margin-bottom: 3px;
+			font-size: 20px;
+			font-weight: bold;
+		}
+		// .ans_group_date
+		&_date {
+			margin-bottom: 5px;
+			font-size: 13px;
+			color: #a1a4b9;
+		}
+		// .ans_group_content
+		&_content {
+			margin-bottom: 5px;
+		}
+		// .ans_group_func
+		&_func {
+			@include d_f(flex, center, center);
+			width: 100%;
+			height: 40px;
+			padding-top: 10px;
+			border-top: 1px solid #ccc;
+			button {
+				height: 35px;
+				padding: 5px 20px;
+			}
+		}
 	}
 }

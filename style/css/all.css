@@ -415,6 +415,15 @@ select {
           animation-delay: 1.2s;
 }
 
+.loading_mini {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
 @-webkit-keyframes loadingTxt {
   0% {
     opacity: 0;
@@ -1169,6 +1178,7 @@ select {
 }
 
 .qa_item {
+  position: relative;
   padding: 30px;
   background-color: #fff;
   border-radius: 15px;
@@ -1285,5 +1295,106 @@ select {
 
 .normal_btn:active {
   background-color: #2b78c1;
+}
+
+.ans {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px 15px;
+}
+
+.ans_title {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  margin-bottom: 3px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ans_date {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #a1a4b9;
+}
+
+.ans_content {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+}
+
+.ans_box {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+  -webkit-box-flex: 100%;
+      -ms-flex: 100%;
+          flex: 100%;
+}
+
+.ans_group {
+  margin-top: 20px;
+}
+
+.ans_group_item {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.ans_group_item + .ans_group_item {
+  margin-top: 10px;
+}
+
+.ans_group_title {
+  margin-bottom: 3px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ans_group_date {
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #a1a4b9;
+}
+
+.ans_group_content {
+  margin-bottom: 5px;
+}
+
+.ans_group_func {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 40px;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.ans_group_func button {
+  height: 35px;
+  padding: 5px 20px;
 }
 /*# sourceMappingURL=all.css.map */

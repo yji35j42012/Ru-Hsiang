@@ -4,6 +4,15 @@ var loginCheck = {
 		if (!getUser) {
 			this.$router.push("/login");
 			return;
+		} else {
+			if (store.state.member.user == null) {
+				store.dispatch("USER", {
+					user: getUser.user,
+					user_id: getUser.user_id,
+					user_name: getUser.user_name,
+					other: getUser.other
+				});
+			}
 		}
 
 		// if (getUser.acc !== "" && getUser.pass !== "") {
@@ -13,16 +22,16 @@ var loginCheck = {
 		// }
 	}
 };
-var load = {
-	mounted() {
-		window.onload = function() {
-			store.dispatch("SET_LOADING", false);
-		};
-	}
-};
+// var load = {
+// 	mounted() {
+// 		window.onload = function() {
+// 			store.dispatch("SET_LOADING", false);
+// 		};
+// 	}
+// };
 
 var url =
-	"https://script.google.com/macros/s/AKfycbxTcJXs8101AOaUMRzWmANAe6sWHY-hu8691n4s9Rz7ZT6homm6ZkCiAaSnBqU9tZRc/exec";
+	"https://script.google.com/macros/s/AKfycbyxi_TP--qNkr1EF8wxmlS9cpT_VZrFmfS0xM_dGE1gNdAL0ysnFo4yPfC4srUzxMT-/exec";
 // var msg = {
 //     methods:{
 //         msgHandler(str){

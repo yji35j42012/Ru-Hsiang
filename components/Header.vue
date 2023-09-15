@@ -40,8 +40,6 @@ module.exports = {
 			this.menuState = !this.menuState;
 		},
 		menuItem() {
-			console.log("~~");
-
 			this.menuState = false;
 		}
 	}

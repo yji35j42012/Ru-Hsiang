@@ -33,7 +33,9 @@ module.exports = {
 		};
 	},
 	components: {},
-	mounted() {},
+	mounted() {
+		store.dispatch("SET_LOADING", false);
+	},
 	computed: {},
 	methods: {
 		login() {
@@ -47,7 +49,7 @@ module.exports = {
 				return;
 			}
 			store.dispatch("SET_LOADING", true);
-			
+
 			var get_url =
 				url +
 				"?getData=login&user=" +
@@ -60,11 +62,26 @@ module.exports = {
 					store.dispatch("MSG", "帳號或密碼輸入錯誤");
 					return;
 				} else {
+					var newarr = [];
+					var marr = res.data[0].other;
+					newarr[res.data[0].user_id] = res.data[0].user_name;
+					marr.forEach(item => {
+						newarr[item.user_id] = item.user_name;
+					});
+
 					let memObj = JSON.stringify({
-						user: this.user
+						user: this.user,
+						user_id: res.data[0].user_id,
+						user_name: res.data[0].user_name,
+						other: newarr
 					});
 					sessionStorage.setItem("wuhsiang", memObj);
-					store.dispatch("USER", { user: this.user });
+					store.dispatch("USER", {
+						user: this.user,
+						user_id: res.data[0].user_id,
+						user_name: res.data[0].user_name,
+						other: newarr
+					});
 
 					this.$router.push("/");
 				}

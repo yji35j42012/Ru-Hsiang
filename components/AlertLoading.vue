@@ -1,8 +1,11 @@
 <style scoped></style>
 
 <template>
-	<div class="container">製作中...</div>
+	<div class="loading_mini">
+
+	</div>
 </template>
+
 
 <script>
 module.exports = {
@@ -10,7 +13,7 @@ module.exports = {
 		return {};
 	},
 	components: {},
-	mounted() {store.dispatch("SET_LOADING", false);},
+	mounted() {},
 	computed: {},
 	methods: {}
 };

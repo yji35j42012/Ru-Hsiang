@@ -4,7 +4,8 @@ const store = new Vuex.Store({
 			user: null
 		},
 		loadingShow: true,
-		msg: ""
+		msg: "",
+		qaData: null
 	},
 	getters: {},
 	mutations: {
@@ -16,6 +17,9 @@ const store = new Vuex.Store({
 		},
 		SET_USER(state, obj) {
 			state.member = obj;
+		},
+		SET_QADATA(state, obj) {
+			state.qaData = obj;
 		}
 	},
 	actions: {
@@ -25,7 +29,7 @@ const store = new Vuex.Store({
 			} else {
 				setTimeout(() => {
 					commit("SET_LOADING", boo);
-				}, 1000);
+				}, 500);
 			}
 		},
 		MSG({ commit }, str) {
@@ -33,6 +37,9 @@ const store = new Vuex.Store({
 		},
 		USER({ commit }, obj) {
 			commit("SET_USER", obj);
+		},
+		qaData({ commit }, obj) {
+			commit("SET_QADATA", obj);
 		}
 	}
 });

@@ -14,7 +14,7 @@ module.exports = {
 	data() {
 		return {};
 	},
-	mixins: [loginCheck, load],
+	mixins: [loginCheck],
 	components: {},
 	mounted() {
 		store.dispatch("SET_LOADING", false);
