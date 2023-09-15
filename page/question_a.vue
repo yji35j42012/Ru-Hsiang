@@ -13,11 +13,21 @@
 					<div class="ans_group_date">{{item.ans_date}}</div>
 					<div class="ans_group_content">{{item.ans_content}}</div>
 					<div class="ans_group_func" v-if="item.ans_userId == mem">
-						<button class="normal_btn" @click="ansEdit(item.ans_id)">編輯</button>
+						<button class="normal_btn" @click="ansEdit(item.ans_id,item)">編輯</button>
 						<button class="normal_btn">刪除</button>
 					</div>
 				</li>
 			</ul>
+		</div>
+
+		<div :class="['ans_alert',alertShow?'show':'']">
+			<div class="ans_alert_box">
+				<textarea class="ans_alert_text" rows="10" v-model="qa_alert_txt"></textarea>
+				<div class="ans_alert_func">
+					<button class="normal_btn">修改</button>
+					<button @click="closeAlert" class="normal_btn">取消</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -35,7 +45,9 @@ module.exports = {
 			qaData: null,
 			showData: null,
 			userNameArr: [],
-			mem: null
+			mem: null,
+			qa_alert_txt: "",
+			alertShow: false
 		};
 	},
 	components: {},
@@ -73,8 +85,14 @@ module.exports = {
 	},
 	computed: {},
 	methods: {
-		ansEdit(id) {
+		ansEdit(id,s) {
 			console.log(id);
+			console.log(s);
+			this.qa_alert_txt = s.ans_content;
+			this.alertShow = true;
+		},
+		closeAlert() {
+			this.alertShow = false;
 		},
 		setAns() {
 			var qa_id = this.$route.params.qa_id;
