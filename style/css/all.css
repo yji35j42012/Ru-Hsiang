@@ -1447,4 +1447,41 @@ select {
   width: 100%;
   height: 40px;
 }
+
+.confirm {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.confirm_box {
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.confirm_msg {
+  margin-bottom: 10px;
+  color: #595959;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+  text-transform: none;
+  line-height: 60px;
+}
 /*# sourceMappingURL=all.css.map */

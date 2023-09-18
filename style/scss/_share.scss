@@ -451,3 +451,32 @@
 		}
 	}
 }
+
+.confirm {
+	position: fixed;
+	top: 0;
+	left: 0;
+	@include d_f(flex, center, center);
+	width: 100%;
+	height: 100%;
+	padding: 20px 15px;
+	background-color: rgba(0, 0, 0, 0.5);
+	// .confirm_box
+	&_box {
+		width: 100%;
+		padding: 20px;
+		background-color: #fff;
+		border-radius: 5px;
+		text-align: center;
+	}
+	// .confirm_msg
+	&_msg {
+		margin-bottom: 10px;
+		color: #595959;
+		font-size: 24px;
+		text-align: center;
+		font-weight: 600;
+		text-transform: none;
+		line-height: 60px;
+	}
+}

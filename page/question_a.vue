@@ -22,13 +22,15 @@
 
 		<div :class="['ans_alert',alertShow?'show':'']">
 			<div class="ans_alert_box">
-				<textarea class="ans_alert_text" rows="10" v-model="qa_alert_txt"></textarea>
+				<textarea class="ans_alert_text" rows="10" v-model="alert_edit.txt"></textarea>
 				<div class="ans_alert_func">
-					<button class="normal_btn">修改</button>
+					<button @click="editHandler" class="normal_btn">修改</button>
 					<button @click="closeAlert" class="normal_btn">取消</button>
 				</div>
 			</div>
 		</div>
+
+		<confirm v-if="checkMsg !== ''" :msg="checkMsg" @checkans="checkHandler"></confirm>
 	</div>
 </template>
 
@@ -46,11 +48,14 @@ module.exports = {
 			showData: null,
 			userNameArr: [],
 			mem: null,
-			qa_alert_txt: "",
-			alertShow: false
+			alert_edit: { edit_row: null, txt: "" },
+			alertShow: false,
+			checkMsg: ""
 		};
 	},
-	components: {},
+	components: {
+		confirm: httpVueLoader("../components/Confirm.vue")
+	},
 	mounted() {
 		this.userNameArr = store.state.member.other;
 		this.mem = store.state.member.user_id;
@@ -85,11 +90,32 @@ module.exports = {
 	},
 	computed: {},
 	methods: {
-		ansEdit(id,s) {
+		checkHandler(s) {
+			console.log("s", s);
+			this.checkMsg = "";
+			if (s == "y") {
+				this.alertShow = false;
+				var get_url =
+					url +
+					"?getData=editAns&ans_row=" +
+					this.alert_edit.edit_row +
+					"&ans_content=" +
+					this.alert_edit.txt;
+				store.dispatch("SET_LOADING", true);
+				axios.get(get_url).then(res => {
+					store.dispatch("SET_LOADING", false);
+				});
+			}
+		},
+		ansEdit(id, s) {
 			console.log(id);
 			console.log(s);
-			this.qa_alert_txt = s.ans_content;
+			this.alert_edit.txt = s.ans_content;
+			this.alert_edit.edit_row = id;
 			this.alertShow = true;
+		},
+		editHandler() {
+			this.checkMsg = "確定要修改嗎？";
 		},
 		closeAlert() {
 			this.alertShow = false;
