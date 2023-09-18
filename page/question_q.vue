@@ -43,25 +43,18 @@ module.exports = {
 	},
 	components: {},
 	mounted() {
-		var get_url = url + "?getData=qa";
-		axios.get(get_url).then(res => {
-			var qaObj = {};
-			store.dispatch("qaData", res.data);
-			this.qaData = res.data;
-			store.dispatch("SET_LOADING", false);
-		});
+		if (store.state.qData == null) {
+			store.dispatch("GET_Q_DATA");
+		}
 	},
 	computed: {
 		qa() {
-			return this.qaData;
+			return store.state.qData;
 		}
 	},
 	methods: {
 		qaAlert(id) {
-			console.log("id", id);
 			this.$router.push("/question/" + id);
-			// this.qaEdit = this.qaData[id];
-			// this.qaAlertShow = true;
 		}
 	}
 };

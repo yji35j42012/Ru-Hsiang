@@ -5,10 +5,10 @@
 		<div class="login_box">
 			<div class="login_box_info">
 				<label class="login_box_inp _acc">
-					<input type="text" placeholder="User Name" v-model="user" />
+					<input type="text" autocapitalize="off" placeholder="User Name" v-model="user" />
 				</label>
 				<label class="login_box_inp _pass">
-					<input type="text" placeholder="Password" v-model="pass" />
+					<input type="text" autocapitalize="off" placeholder="Password" v-model="pass" />
 				</label>
 
 				<button @click="login" class="login_box_btn">LOGIN</button>
