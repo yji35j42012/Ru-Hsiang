@@ -45,6 +45,8 @@ module.exports = {
 	mounted() {
 		if (store.state.qData == null) {
 			store.dispatch("GET_Q_DATA");
+		} else {
+			store.dispatch("SET_LOADING", false);
 		}
 	},
 	computed: {

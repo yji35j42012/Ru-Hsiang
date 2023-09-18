@@ -5,8 +5,6 @@
 			<router-link class="home_item _plan" to="/plan">未來規劃</router-link>
 			<router-link class="home_item _logout" to="/logout">登出</router-link>
 		</div>
-
-
 	</div>
 </template>
 
@@ -17,9 +15,7 @@ module.exports = {
 		return {};
 	},
 	mixins: [loginCheck],
-	components: {
-
-	},
+	components: {},
 	mounted() {
 		store.dispatch("SET_LOADING", false);
 	},

@@ -1298,6 +1298,7 @@ select {
 }
 
 .ans {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1312,6 +1313,15 @@ select {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 20px 15px;
+}
+
+.ans_add {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  background: url("../../images/icon/icon_addans.svg") no-repeat center/contain;
 }
 
 .ans_title {

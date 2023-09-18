@@ -47,6 +47,8 @@ const store = new Vuex.Store({
 			var get_url = url + "?getData=qa";
 			var q_arr = [];
 			axios.get(get_url).then(res => {
+				console.log('ASDFASDF');
+				
 				var q_title = res.data[0];
 				for (let i = 1; i < res.data.length; i++) {
 					const element = res.data[i];
@@ -79,6 +81,23 @@ const store = new Vuex.Store({
 					commit("SET_LOADING", false);
 				}, 500);
 			});
+			commit("SET_ANSDATA", a_arr);
+		},
+		RESET_A_DATA({ commit }, obj) {
+			var a_title = obj[0];
+			var a_arr = [];
+			for (let i = 1; i < obj.length; i++) {
+				const element = obj[i];
+				var a_obj = {};
+				for (let j = 0; j < a_title.length; j++) {
+					a_obj[a_title[j]] = element[j];
+				}
+				a_arr.push(a_obj);
+			}
+			setTimeout(() => {
+				commit("SET_LOADING", false);
+			}, 500);
+
 			commit("SET_ANSDATA", a_arr);
 		}
 	}

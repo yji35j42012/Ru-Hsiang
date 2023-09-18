@@ -3,6 +3,8 @@
 <template>
 	<div class="container">
 		<div class="ans">
+			<i class="ans_add" @click="addAns"></i>
+
 			<div class="ans_title" v-if="showQ !==null">{{showQ.qa_title}}</div>
 			<div class="ans_date" v-if="showQ !==null">{{showQ.qa_date}}</div>
 			<div class="ans_content" v-if="showQ !==null">{{showQ.qa_content}}</div>
@@ -13,7 +15,7 @@
 					<div class="ans_group_content">{{item.ans_content}}</div>
 					<div class="ans_group_func" v-if="item.ans_userId == mem">
 						<button class="normal_btn" @click="ansEdit(item.ans_id,item)">編輯</button>
-						<button class="normal_btn">刪除</button>
+						<button class="normal_btn" @click="ansDel(item.ans_id)">刪除</button>
 					</div>
 				</li>
 			</ul>
@@ -23,7 +25,7 @@
 			<div class="ans_alert_box">
 				<textarea class="ans_alert_text" rows="10" v-model="alert_edit.txt"></textarea>
 				<div class="ans_alert_func">
-					<button @click="editHandler" class="normal_btn">修改</button>
+					<button @click="editHandler" class="normal_btn">{{alert_confirm}}</button>
 					<button @click="closeAlert" class="normal_btn">取消</button>
 				</div>
 			</div>
@@ -49,12 +51,15 @@ module.exports = {
 			mem: null,
 			alert_edit: { edit_row: null, txt: "" },
 			alertShow: false,
-			checkMsg: ""
+			checkMsg: "",
+			alert_confirm: "",
+			delAnsId: null
 		};
 	},
 	components: {
 		confirm: httpVueLoader("../components/Confirm.vue")
 	},
+
 	mounted() {
 		this.userNameArr = store.state.member.other;
 		this.mem = store.state.member.user_id;
@@ -97,32 +102,79 @@ module.exports = {
 		}
 	},
 	methods: {
+		ansDel(id) {
+			console.log("id", id);
+			this.alert_confirm = "刪除";
+			this.checkMsg = "確定要刪除嗎？";
+			this.delAnsId = id;
+		},
+		addAns() {
+			this.alert_confirm = "新增";
+			this.alert_edit.txt = "";
+			this.alertShow = true;
+		},
 		checkHandler(s) {
 			this.checkMsg = "";
 			if (s == "y") {
-				this.alertShow = false;
-				var get_url =
-					url +
-					"?getData=editAns&ans_row=" +
-					this.alert_edit.edit_row +
-					"&ans_content=" +
-					this.alert_edit.txt;
 				store.dispatch("SET_LOADING", true);
-				axios.get(get_url).then(res => {
-					setTimeout(() => {
-						store.dispatch("GET_A_DATA");
-					}, 200);
-					// store.dispatch("SET_LOADING", false);
-				});
+				this.alertShow = false;
+				if (this.alert_confirm == "修改") {
+					var get_url =
+						url +
+						"?getData=editAns&ans_row=" +
+						this.alert_edit.edit_row +
+						"&ans_content=" +
+						this.alert_edit.txt;
+					axios.get(get_url).then(res => {
+						setTimeout(() => {
+							store.dispatch("RESET_A_DATA", res.data);
+						}, 200);
+					});
+				} else if (this.alert_confirm == "新增") {
+					var qaId = this.$route.params.qa_id;
+					var userId = store.state.member.user_id;
+					var content = this.alert_edit.txt;
+					var date = new Date();
+					y = date.getFullYear();
+					m = date.getMonth() + 1;
+					d = date.getDate();
+					var now = y + "/" + m + "/" + d;
+					var get_url =
+						url +
+						"?getData=addAns&userId=" +
+						userId +
+						"&date=" +
+						now +
+						"&content=" +
+						content +
+						"&qaId=" +
+						qaId;
+					axios.get(get_url).then(res => {
+						store.dispatch("RESET_A_DATA", res.data);
+					});
+				} else if (this.alert_confirm == "刪除") {
+					var get_url =
+						url + "?getData=delAns&delId=" + this.delAnsId;
+					axios.get(get_url).then(res => {
+						setTimeout(() => {
+							store.dispatch("RESET_A_DATA", res.data);
+						}, 200);
+					});
+				}
 			}
 		},
 		ansEdit(id, s) {
+			this.alert_confirm = "修改";
 			this.alert_edit.txt = s.ans_content;
 			this.alert_edit.edit_row = id;
 			this.alertShow = true;
 		},
 		editHandler() {
-			this.checkMsg = "確定要修改嗎？";
+			if (this.alert_edit.txt == "") {
+				store.dispatch("MSG", "請輸入內容");
+				return;
+			}
+			this.checkMsg = "確定要" + this.alert_confirm + "嗎？";
 		},
 		closeAlert() {
 			this.alertShow = false;

@@ -347,9 +347,20 @@
 }
 
 .ans {
+	position: relative;
 	@include d_f(flex);
 	flex-direction: column;
 	padding: 20px 15px;
+	// .ans_add
+	&_add {
+		position: absolute;
+		right: 20px;
+		top: 20px;
+		width: 30px;
+		height: 30px;
+		background: url("../../images/icon/icon_addans.svg") no-repeat
+			center/contain;
+	}
 	// .ans_title
 	&_title {
 		flex: none;
