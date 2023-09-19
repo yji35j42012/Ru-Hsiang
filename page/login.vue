@@ -49,13 +49,22 @@ module.exports = {
 				return;
 			}
 			store.dispatch("SET_LOADING", true);
-
+			var date = new Date();
+			y = date.getFullYear();
+			m = date.getMonth() + 1;
+			d = date.getDate();
+			h = date.getHours();
+			min = date.getMinutes();
+			s = date.getSeconds();
+			var now = y + "/" + m + "/" + d + h + ":" + min + ":" + s;
 			var get_url =
 				url +
 				"?getData=login&user=" +
 				encodeURIComponent(this.user) +
 				"&pass=" +
-				encodeURIComponent(this.pass);
+				encodeURIComponent(this.pass) +
+				"&date=" +
+				now;
 			axios.get(get_url).then(res => {
 				if (res.data[0].state !== 0) {
 					store.dispatch("SET_LOADING", false);

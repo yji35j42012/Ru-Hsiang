@@ -3,8 +3,6 @@
 <template>
 	<div class="container">
 		<div class="ans">
-			<i class="ans_add" @click="addAns"></i>
-
 			<div class="ans_title" v-if="showQ !==null">{{showQ.qa_title}}</div>
 			<div class="ans_date" v-if="showQ !==null">{{showQ.qa_date}}</div>
 			<div class="ans_content" v-if="showQ !==null">{{showQ.qa_content}}</div>
@@ -29,6 +27,11 @@
 					<button @click="closeAlert" class="normal_btn _secondary">取消</button>
 				</div>
 			</div>
+		</div>
+
+		<div class="normal_func">
+			<button class="normal_btn _primary" @click="back">上一頁</button>
+			<button class="normal_btn _third" @click="addAns">新增答案</button>
 		</div>
 
 		<confirm v-if="checkMsg !== ''" :msg="checkMsg" @checkans="checkHandler"></confirm>
@@ -98,6 +101,9 @@ module.exports = {
 		}
 	},
 	methods: {
+		back() {
+			this.$router.go(-1);
+		},
 		ansDel(id) {
 			console.log("id", id);
 			this.alert_confirm = "刪除";

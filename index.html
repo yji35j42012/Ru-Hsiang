@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<div id="app" class="wrap">
+	<div id="app" :class="['wrap',nowPage]">
 		<tophead></tophead>
 		<div class="main">
 			<router-view></router-view>
@@ -70,14 +70,12 @@
 			// mode: 'history',
 			routes: routes, // (缩写) 相当于 routes: routes
 		});
-
-
 		var vue = new Vue({
 			el: "#app",
 			data() {
 				return {
+					nowPage: "",
 					// loadingShow: true
-					// nowPage: "",
 					// oldpetData: pet,
 					// icon_all: icon_all
 				};
@@ -101,18 +99,15 @@
 			watch: {
 				$route(to, from) {
 					store.dispatch("SET_LOADING", true);
-					// var now = this.$route.path;
-					// if ((now.split('home')[0] == 'home' || now.split('home')[0] == '/') && now.split('home')[1] !== '') {
-					// 	this.nowPage = "detail";
-					// 	store.dispatch("PAGE", "detail");
-					// } else if (now == "/" || now == 'home') {
-					// 	this.nowPage = "home";
-					// 	store.dispatch("PAGE", "home");
-					// } else {
-					// 	store.dispatch("SET_LOADING", true);
-					// 	this.nowPage = now.split("/")[1];
-					// 	store.dispatch("PAGE", now.split("/")[1]);
-					// }
+					var now = this.$route.path;
+					if (now == "/" || now == 'home') {
+						this.nowPage = "home";
+						store.dispatch("PAGE", "home");
+					} else {
+						store.dispatch("SET_LOADING", true);
+						this.nowPage = now.split("/")[1];
+						store.dispatch("PAGE", now.split("/")[1]);
+					}
 				},
 			},
 			methods: {},

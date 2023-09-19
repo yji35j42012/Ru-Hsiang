@@ -31,7 +31,7 @@ var loginCheck = {
 // };
 
 var url =
-	"https://script.google.com/macros/s/AKfycbz1xKlG9CXA1gI1oX3WZ4Izg0Wa5UaaHzASwd-IsD7g4il1aGS4ANiGq9wk7gY3M2ZK/exec";
+	"https://script.google.com/macros/s/AKfycby5al_QxfOu2PIcrFVI65TLYKQ5nMrZXdAtjmvu2ka8wcn2nwo_lzDwBxRD9i0tVs6c/exec";
 // var msg = {
 //     methods:{
 //         msgHandler(str){

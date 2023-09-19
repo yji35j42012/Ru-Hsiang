@@ -97,6 +97,23 @@ const store = new Vuex.Store({
 			}, 500);
 
 			commit("SET_ANSDATA", a_arr);
+		},
+		RESET_Q_DATA({ commit }, obj) {
+			commit("SET_QADATA", null);
+			var q_title = obj[0];
+			var q_arr = [];
+			for (let i = 1; i < obj.length; i++) {
+				const element = obj[i];
+				var q_obj = {};
+				for (let j = 0; j < q_title.length; j++) {
+					q_obj[q_title[j]] = element[j];
+				}
+				q_arr.push(q_obj);
+			}
+			setTimeout(() => {
+				commit("SET_LOADING", false);
+			}, 500);
+			commit("SET_QADATA", q_arr);
 		}
 	}
 });
