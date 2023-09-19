@@ -337,12 +337,37 @@
 	font-weight: 500;
 	margin: 0 5px;
 	padding: 10px 32px;
-	background-color: rgb(48, 133, 214);
-	border-left-color: rgb(48, 133, 214);
-	border-right-color: rgb(48, 133, 214);
+
+	&._primary {
+		background-color: rgb(48, 133, 214);
+		border-left-color: rgb(48, 133, 214);
+		border-right-color: rgb(48, 133, 214);
+	}
+	&._secondary {
+		color: #fff;
+		background-color: #6c757d;
+		border-color: #6c757d;
+	}
+	&._danger {
+		color: #fff;
+		background-color: #dc3545;
+		border-color: #dc3545;
+	}
 	@extend %transition;
 	@include hoverHandler {
-		background-color: rgb(43, 120, 193);
+		&._primary {
+			background-color: rgb(43, 120, 193);
+		}
+		&._secondary {
+			color: #fff;
+			background-color: #5c636a;
+			border-color: #565e64;
+		}
+		&._danger {
+			color: #fff;
+			background-color: #bb2d3b;
+			border-color: #b02a37;
+		}
 	}
 }
 

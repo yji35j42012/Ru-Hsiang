@@ -47,8 +47,6 @@ const store = new Vuex.Store({
 			var get_url = url + "?getData=qa";
 			var q_arr = [];
 			axios.get(get_url).then(res => {
-				console.log('ASDFASDF');
-				
 				var q_title = res.data[0];
 				for (let i = 1; i < res.data.length; i++) {
 					const element = res.data[i];

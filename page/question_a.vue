@@ -14,8 +14,8 @@
 					<div class="ans_group_date">{{item.ans_date}}</div>
 					<div class="ans_group_content">{{item.ans_content}}</div>
 					<div class="ans_group_func" v-if="item.ans_userId == mem">
-						<button class="normal_btn" @click="ansEdit(item.ans_id,item)">編輯</button>
-						<button class="normal_btn" @click="ansDel(item.ans_id)">刪除</button>
+						<button class="normal_btn _primary" @click="ansEdit(item.ans_id,item)">編輯</button>
+						<button class="normal_btn _danger" @click="ansDel(item.ans_id)">刪除</button>
 					</div>
 				</li>
 			</ul>
@@ -25,8 +25,8 @@
 			<div class="ans_alert_box">
 				<textarea class="ans_alert_text" rows="10" v-model="alert_edit.txt"></textarea>
 				<div class="ans_alert_func">
-					<button @click="editHandler" class="normal_btn">{{alert_confirm}}</button>
-					<button @click="closeAlert" class="normal_btn">取消</button>
+					<button @click="editHandler" class="normal_btn _primary">{{alert_confirm}}</button>
+					<button @click="closeAlert" class="normal_btn _secondary">取消</button>
 				</div>
 			</div>
 		</div>
@@ -44,9 +44,6 @@ module.exports = {
 				max: 0,
 				count: 0
 			},
-			// qaAns: null,
-			// qaData: null,
-			// showQ: null,
 			userNameArr: [],
 			mem: null,
 			alert_edit: { edit_row: null, txt: "" },
@@ -74,7 +71,6 @@ module.exports = {
 		showQ() {
 			var result = null;
 			var q = store.state.qData;
-
 			var qa_id = this.$route.params.qa_id;
 			if (q) {
 				q.forEach(item => {

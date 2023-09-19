@@ -1282,19 +1282,56 @@ select {
   font-weight: 500;
   margin: 0 5px;
   padding: 10px 32px;
+}
+
+.normal_btn._primary {
   background-color: #3085d6;
   border-left-color: #3085d6;
   border-right-color: #3085d6;
 }
 
+.normal_btn._secondary {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.normal_btn._danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
 @media (pointer: fine) and (-webkit-max-device-pixel-ratio: 2), (pointer: fine) and (max-resolution: 2dppx), screen and (pointer: fine) and (-webkit-max-device-pixel-ratio: 2), (-moz-touch-enabled: 0) {
-  .normal_btn:hover {
+  .normal_btn:hover._primary {
     background-color: #2b78c1;
+  }
+  .normal_btn:hover._secondary {
+    color: #fff;
+    background-color: #5c636a;
+    border-color: #565e64;
+  }
+  .normal_btn:hover._danger {
+    color: #fff;
+    background-color: #bb2d3b;
+    border-color: #b02a37;
   }
 }
 
-.normal_btn:active {
+.normal_btn:active._primary {
   background-color: #2b78c1;
+}
+
+.normal_btn:active._secondary {
+  color: #fff;
+  background-color: #5c636a;
+  border-color: #565e64;
+}
+
+.normal_btn:active._danger {
+  color: #fff;
+  background-color: #bb2d3b;
+  border-color: #b02a37;
 }
 
 .ans {

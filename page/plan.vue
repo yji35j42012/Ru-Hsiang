@@ -1,7 +1,9 @@
 <style scoped></style>
 
 <template>
-	<div class="container">製作中...</div>
+	<div class="container">
+		<bulid></bulid>
+	</div>
 </template>
 
 <script>
@@ -9,7 +11,9 @@ module.exports = {
 	data() {
 		return {};
 	},
-	components: {},
+		components: {
+		bulid: httpVueLoader("../components/Build.vue")
+	},
 	mounted() {store.dispatch("SET_LOADING", false);},
 	computed: {},
 	methods: {}
