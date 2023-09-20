@@ -17,6 +17,9 @@
 					<router-link class="head_menu_link _plan" to="/plan">未來規劃</router-link>
 				</li>
 				<li @click="menuItem" class="head_menu_item">
+					<router-link class="head_menu_link _member" to="/member">個人資料</router-link>
+				</li>
+				<li @click="menuItem" class="head_menu_item">
 					<router-link class="head_menu_link _logout" to="/logout">登出</router-link>
 				</li>
 			</ul>
