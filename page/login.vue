@@ -39,7 +39,6 @@ module.exports = {
 	computed: {},
 	methods: {
 		login() {
-			// this.$router.push("/home");
 			if (this.user == "") {
 				store.dispatch("MSG", "請輸入帳號");
 				return;

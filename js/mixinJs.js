@@ -1,5 +1,5 @@
 var loginCheck = {
-	created: function() {
+	created: function () {
 		let getUser = JSON.parse(sessionStorage.getItem("wuhsiang"));
 		if (!getUser) {
 			this.$router.push("/login");
@@ -31,7 +31,7 @@ var loginCheck = {
 // };
 
 var url =
-	"https://script.google.com/macros/s/AKfycby5al_QxfOu2PIcrFVI65TLYKQ5nMrZXdAtjmvu2ka8wcn2nwo_lzDwBxRD9i0tVs6c/exec";
+	"https://script.google.com/macros/s/AKfycbx50QVRdBcOBeUqb2rKH1N_SpmUBjZHfVl2L0MsLY9vlNl5qjNhK4GtQcZa7wR_NMKa/exec";
 // var msg = {
 //     methods:{
 //         msgHandler(str){
