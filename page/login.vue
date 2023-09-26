@@ -12,7 +12,6 @@
 				</label>
 
 				<button @click="login" class="login_box_btn">LOGIN</button>
-				<!-- <button @click="getSe" class="login_box_btn">get</button> -->
 			</div>
 			<div class="login_box_bg">
 				<span class="login_box_shape login_box_shape4"></span>
