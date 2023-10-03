@@ -3,10 +3,10 @@
 <template>
 	<div class="container">
 		<ul class="qa_group">
-			<li class="qa_item" v-for="(item,index) in qa" :key="index" @click="qaAlert(item.qa_id)">
-				<div class="qa_item_date">{{item.qa_date.split('/')[1]+"/"+item.qa_date.split('/')[2]}}</div>
-				<div class="qa_item_title">{{item.qa_title}}</div>
-				<div class="qa_item_info">{{item.qa_content}}</div>
+			<li class="qa_item" v-for="(item, index) in qa" :key="index" @click="qaAlert(item.qa_id)">
+				<div class="qa_item_date">{{ item.qa_date.split('/')[1] + "/" + item.qa_date.split('/')[2] }}</div>
+				<div class="qa_item_title">{{ item.qa_title }}</div>
+				<div class="qa_item_info">{{ item.qa_content }}</div>
 			</li>
 		</ul>
 
@@ -15,7 +15,7 @@
 			<button class="normal_btn _third" @click="addQ">新增問題</button>
 		</div>
 
-		<div :class="['ans_alert',alertShow?'show':'']">
+		<div :class="['ans_alert', alertShow ? 'show' : '']">
 			<div class="ans_alert_box">
 				<input class="ans_alert_inp" type="text" v-model="alert_edit.title" />
 				<input class="ans_alert_date" type="text" v-model="alert_edit.date" />
@@ -103,7 +103,7 @@ module.exports = {
 				this.alert_edit.txt;
 			if (s == "y") {
 				store.dispatch("SET_LOADING", true);
-					this.alertShow = false;
+				this.alertShow = false;
 				axios.get(get_url).then(res => {
 					store.dispatch("RESET_Q_DATA", res.data);
 				});
@@ -116,7 +116,7 @@ module.exports = {
 			this.$router.push("/question/" + id);
 		},
 		timeSort(arr) {
-			arr.sort(function(a, b) {
+			arr.sort(function (a, b) {
 				return a.qa_date < b.qa_date ? 1 : -1;
 			});
 		}
