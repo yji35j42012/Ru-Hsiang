@@ -138,8 +138,8 @@ module.exports = {
 					var content = this.alert_edit.txt;
 					var date = new Date();
 					y = date.getFullYear();
-					m = date.getMonth() + 1;
-					d = date.getDate();
+					m = date.getMonth() + 1 < 10 ? '0' + date.getMonth() + 1 : date.getMonth() + 1;
+					d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
 					var now = y + "/" + m + "/" + d;
 					var get_url =
 						url +

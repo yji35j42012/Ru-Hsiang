@@ -68,8 +68,8 @@ module.exports = {
 			this.alertShow = true;
 			var date = new Date();
 			y = date.getFullYear();
-			m = date.getMonth() + 1;
-			d = date.getDate();
+			m = date.getMonth() + 1 < 10 ? '0' + date.getMonth() + 1 : date.getMonth() + 1;
+			d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
 			var now = y + "/" + m + "/" + d;
 			this.alert_edit.date = now;
 		},
