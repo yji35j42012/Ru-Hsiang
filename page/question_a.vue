@@ -3,27 +3,27 @@
 <template>
 	<div class="container">
 		<div class="ans">
-			<div class="ans_title" v-if="showQ !==null">{{showQ.qa_title}}</div>
-			<div class="ans_date" v-if="showQ !==null">{{showQ.qa_date}}</div>
-			<div class="ans_content" v-if="showQ !==null">{{showQ.qa_content}}</div>
-			<ul class="ans_group" v-if="showA !==null">
-				<li class="ans_group_item" v-for="(item,index) in showA" :key="index">
-					<div class="ans_group_title">{{userNameArr[item.ans_userId]}}</div>
-					<div class="ans_group_date">{{item.ans_date}}</div>
-					<div class="ans_group_content">{{item.ans_content}}</div>
+			<div class="ans_title" v-if="showQ !== null">{{ showQ.qa_title }}</div>
+			<div class="ans_date" v-if="showQ !== null">{{ showQ.qa_date }}</div>
+			<div class="ans_content" v-if="showQ !== null">{{ showQ.qa_content }}</div>
+			<ul class="ans_group" v-if="showA !== null">
+				<li class="ans_group_item" v-for="(item, index) in showA" :key="index">
+					<div class="ans_group_title">{{ userNameArr[item.ans_userId] }}</div>
+					<div class="ans_group_date">{{ item.ans_date }}</div>
+					<div class="ans_group_content">{{ item.ans_content }}</div>
 					<div class="ans_group_func" v-if="item.ans_userId == mem">
-						<button class="normal_btn _primary" @click="ansEdit(item.ans_id,item)">編輯</button>
+						<button class="normal_btn _primary" @click="ansEdit(item.ans_id, item)">編輯</button>
 						<button class="normal_btn _danger" @click="ansDel(item.ans_id)">刪除</button>
 					</div>
 				</li>
 			</ul>
 		</div>
 
-		<div :class="['ans_alert',alertShow?'show':'']">
+		<div :class="['ans_alert', alertShow ? 'show' : '']">
 			<div class="ans_alert_box">
 				<textarea class="ans_alert_text" rows="10" v-model="alert_edit.txt"></textarea>
 				<div class="ans_alert_func">
-					<button @click="editHandler" class="normal_btn _primary">{{alert_confirm}}</button>
+					<button @click="editHandler" class="normal_btn _primary">{{ alert_confirm }}</button>
 					<button @click="closeAlert" class="normal_btn _secondary">取消</button>
 				</div>
 			</div>
