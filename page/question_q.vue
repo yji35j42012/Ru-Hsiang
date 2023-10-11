@@ -66,6 +66,8 @@ module.exports = {
 	methods: {
 		addQ() {
 			this.alertShow = true;
+			this.alert_edit.title = "";
+			this.alert_edit.txt = "";
 			var date = new Date();
 			y = date.getFullYear();
 			m = date.getMonth() + 1 < 10 ? '0' + date.getMonth() + 1 : date.getMonth() + 1;
